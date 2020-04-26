@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: org.jboss.slf4j:slf4j-jboss-logging:1.2.0.Final">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jboss.slf4j/slf4j-jboss-logging/1.2.0.Final/bff294c02b64ad6bf8af6e6994e186dc035e0a47/slf4j-jboss-logging-1.2.0.Final.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jboss.slf4j/slf4j-jboss-logging/1.2.0.Final/45ca868c144de8e002a9edd6a5f69f781033c0dc/slf4j-jboss-logging-1.2.0.Final-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: io.quarkus.arc:arc:1.3.2.Final">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.quarkus.arc/arc/1.3.2.Final/bfbee911393bb3e34685f4bae9be62c8a35e8893/arc-1.3.2.Final.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.quarkus.arc/arc/1.3.2.Final/25a74accd29bb820c12c7845395b8ae1578e2b4b/arc-1.3.2.Final-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

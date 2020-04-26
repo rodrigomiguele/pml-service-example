@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: org.jboss.resteasy:resteasy-json-p-provider:4.5.3.Final">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jboss.resteasy/resteasy-json-p-provider/4.5.3.Final/332b1e03a843c97f2ef1f0116b7b44464d9d9f25/resteasy-json-p-provider-4.5.3.Final.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jboss.resteasy/resteasy-json-p-provider/4.5.3.Final/5ad0909aea5e52afb2cba534527578e803b4fddb/resteasy-json-p-provider-4.5.3.Final-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

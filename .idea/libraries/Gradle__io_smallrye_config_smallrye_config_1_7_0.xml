@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: io.smallrye.config:smallrye-config:1.7.0">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.smallrye.config/smallrye-config/1.7.0/4bfcdbfff93295dde743c4d914570686ba4328d4/smallrye-config-1.7.0.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.smallrye.config/smallrye-config/1.7.0/2be2e79e991392a40d6e7684f798000e69d011ec/smallrye-config-1.7.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

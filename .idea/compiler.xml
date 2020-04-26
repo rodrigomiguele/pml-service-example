@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <bytecodeTargetLevel>
+      <module name="pml-service-example.application.main" target="1.8" />
+      <module name="pml-service-example.application.test" target="1.8" />
+      <module name="pml-service-example.core.main" target="1.8" />
+      <module name="pml-service-example.core.test" target="1.8" />
+      <module name="pml-service-example.main" target="1.8" />
+      <module name="pml-service-example.native-test" target="1.8" />
+      <module name="pml-service-example.test" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

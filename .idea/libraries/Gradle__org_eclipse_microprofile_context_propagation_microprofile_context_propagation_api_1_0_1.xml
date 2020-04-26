@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: org.eclipse.microprofile.context-propagation:microprofile-context-propagation-api:1.0.1">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.eclipse.microprofile.context-propagation/microprofile-context-propagation-api/1.0.1/b7825e202a09dfb9dbb4b0e65b74237ab1fc6cec/microprofile-context-propagation-api-1.0.1.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.eclipse.microprofile.context-propagation/microprofile-context-propagation-api/1.0.1/c4949510ed30b67e953f944642a47adcc5f845b6/microprofile-context-propagation-api-1.0.1-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

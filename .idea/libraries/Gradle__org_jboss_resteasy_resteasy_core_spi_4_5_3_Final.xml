@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: org.jboss.resteasy:resteasy-core-spi:4.5.3.Final">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jboss.resteasy/resteasy-core-spi/4.5.3.Final/52670be860b2bca12f21fc5ac225c8c3c83919bd/resteasy-core-spi-4.5.3.Final.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jboss.resteasy/resteasy-core-spi/4.5.3.Final/9cf735277fcb2ba598817b2dabc627f2577b9ced/resteasy-core-spi-4.5.3.Final-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

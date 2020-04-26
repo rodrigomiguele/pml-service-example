@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: io.quarkus.security:quarkus-security:1.0.1.Final">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.quarkus.security/quarkus-security/1.0.1.Final/37300f6305380291e76021857f60c87bbf5e0220/quarkus-security-1.0.1.Final.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.quarkus.security/quarkus-security/1.0.1.Final/a414f8bdf723ba55c23ec18e5a50a51088767bde/quarkus-security-1.0.1.Final-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

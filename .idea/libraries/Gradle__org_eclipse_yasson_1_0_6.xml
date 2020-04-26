@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: org.eclipse:yasson:1.0.6">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.eclipse/yasson/1.0.6/9258e11ac56a8950724d3693666b0b1bcfea6e01/yasson-1.0.6.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.eclipse/yasson/1.0.6/d3345fddf64eeeb8268e49a9e0b725f1eb7dffde/yasson-1.0.6-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

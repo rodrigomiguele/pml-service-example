@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: io.quarkus:quarkus-jsonb:1.3.2.Final">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.quarkus/quarkus-jsonb/1.3.2.Final/91d913d344e6860d7f0db86c8e146b316ed08da5/quarkus-jsonb-1.3.2.Final.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.quarkus/quarkus-jsonb/1.3.2.Final/538e942033f1703f664ee7495d301d3def7a111/quarkus-jsonb-1.3.2.Final-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
