@@ -15,7 +15,7 @@ import org.mockito.junit.jupiter.MockitoExtension
 import rmiguele.transaction.validation.model.Transaction
 import rmiguele.transaction.validation.model.TransactionType
 import rmiguele.transaction.validation.repository.TransactionRepository
-import rmiguele.transaction.validation.service.AddViolationCommand
+import rmiguele.transaction.validation.service.CreateViolationCommand
 import rmiguele.transaction.validation.service.ValidateCreditCardTransactionCommand
 import rmiguele.transaction.validation.service.ViolationService
 import rmiguele.transaction.validation.service.impl.TestUtils.Companion.addMinutes
@@ -36,7 +36,7 @@ class ValidateCreditCardTransactionServiceImplTest {
     lateinit var validateCreditCardTransactionServiceImpl: ValidateCreditCardTransactionServiceImpl
 
     @Captor
-    lateinit var argumentCaptor: ArgumentCaptor<AddViolationCommand>
+    lateinit var argumentCaptor: ArgumentCaptor<CreateViolationCommand>
 
     @Test
     fun doNothingIfNoPreviousTransactionFromSender() {
@@ -51,7 +51,7 @@ class ValidateCreditCardTransactionServiceImplTest {
 
         validateCreditCardTransactionServiceImpl.validate(ValidateCreditCardTransactionCommand("transaction1", "sender1", 200.00, Date()))
 
-        verify(violationService, never()).addViolation(any())
+        verify(violationService, never()).createViolation(any())
     }
 
     @Test
@@ -63,7 +63,7 @@ class ValidateCreditCardTransactionServiceImplTest {
 
         validateCreditCardTransactionServiceImpl.validate(ValidateCreditCardTransactionCommand("transaction1", "sender1", 100.00, date))
 
-        verify(violationService, never()).addViolation(any())
+        verify(violationService, never()).createViolation(any())
     }
 
     @Test
@@ -75,7 +75,7 @@ class ValidateCreditCardTransactionServiceImplTest {
 
         validateCreditCardTransactionServiceImpl.validate(ValidateCreditCardTransactionCommand("transaction1", "sender1", 100.00, date))
 
-        verify(violationService, only()).addViolation(capture(argumentCaptor))
+        verify(violationService, only()).createViolation(capture(argumentCaptor))
         assertEquals("transaction1", argumentCaptor.value.transactionCode)
         assertEquals("Uma transação de mesmo valor já ocorreu nos últimos 5 minutos.", argumentCaptor.value.description)
     }

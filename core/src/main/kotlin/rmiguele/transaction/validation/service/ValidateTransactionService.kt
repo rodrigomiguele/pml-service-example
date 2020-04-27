@@ -4,8 +4,8 @@ import rmiguele.transaction.validation.model.TransactionType
 import java.util.Date
 
 data class ValidateTransactionCommand(
-        val transactionType: TransactionType,
         val transactionCode: String,
+        val transactionType: TransactionType,
         val value: Double,
         val date: Date,
         val senderCode: String,

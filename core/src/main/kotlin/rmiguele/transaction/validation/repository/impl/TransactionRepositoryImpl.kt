@@ -6,7 +6,7 @@ import rmiguele.transaction.validation.model.Transaction
 import rmiguele.transaction.validation.model.TransactionType
 import rmiguele.transaction.validation.repository.TransactionRepository
 
-class TransactionRepositoryImplImpl(override val mongoClient: MongoClient) :
+class TransactionRepositoryImpl(mongoClient: MongoClient) :
         BaseRepositoryImpl<String, Transaction>(Transaction::class.java, mongoClient), TransactionRepository {
 
     override fun getLastTransactionByTypeAndSender(transactionType: TransactionType, senderCode: String): Transaction? {

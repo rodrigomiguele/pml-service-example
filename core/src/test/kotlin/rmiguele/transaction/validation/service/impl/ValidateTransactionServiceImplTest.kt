@@ -29,14 +29,14 @@ class ValidateTransactionServiceImplTest {
 
     @Test
     fun validateCreditCard() {
-        validateTransactionServiceImpl.validate(ValidateTransactionCommand(TransactionType.CREDIT_CARD, "transaction1", 100.00, Date(), "sender1", "receiver1"))
+        validateTransactionServiceImpl.validate(ValidateTransactionCommand("transaction1", TransactionType.CREDIT_CARD,  100.00, Date(), "sender1", "receiver1"))
         verify(validateCreditCardTransactionService, only()).validate(any())
         verify(restrictedListValidationService, only()).validate(any())
     }
 
     @Test
     fun doesNotValidateCreditCardForOtherTypes() {
-        validateTransactionServiceImpl.validate(ValidateTransactionCommand(TransactionType.ATM, "transaction1", 100.00, Date(), "sender1", "receiver1"))
+        validateTransactionServiceImpl.validate(ValidateTransactionCommand("transaction1", TransactionType.ATM, 100.00, Date(), "sender1", "receiver1"))
         verify(validateCreditCardTransactionService, never()).validate(any())
         verify(restrictedListValidationService, only()).validate(any())
     }

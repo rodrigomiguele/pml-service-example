@@ -5,12 +5,12 @@
       <module fileurl="file://$PROJECT_DIR$/.idea/pml-service-example.iml" filepath="$PROJECT_DIR$/.idea/pml-service-example.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/application/pml-service-example.application.iml" filepath="$PROJECT_DIR$/.idea/modules/application/pml-service-example.application.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/application/pml-service-example.application.main.iml" filepath="$PROJECT_DIR$/.idea/modules/application/pml-service-example.application.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/application/pml-service-example.application.native-test.iml" filepath="$PROJECT_DIR$/.idea/modules/application/pml-service-example.application.native-test.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/application/pml-service-example.application.test.iml" filepath="$PROJECT_DIR$/.idea/modules/application/pml-service-example.application.test.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/core/pml-service-example.core.iml" filepath="$PROJECT_DIR$/.idea/modules/core/pml-service-example.core.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/core/pml-service-example.core.main.iml" filepath="$PROJECT_DIR$/.idea/modules/core/pml-service-example.core.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/core/pml-service-example.core.test.iml" filepath="$PROJECT_DIR$/.idea/modules/core/pml-service-example.core.test.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/pml-service-example.main.iml" filepath="$PROJECT_DIR$/.idea/modules/pml-service-example.main.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/pml-service-example.native-test.iml" filepath="$PROJECT_DIR$/.idea/modules/pml-service-example.native-test.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/pml-service-example.test.iml" filepath="$PROJECT_DIR$/.idea/modules/pml-service-example.test.iml" />
     </modules>
   </component>

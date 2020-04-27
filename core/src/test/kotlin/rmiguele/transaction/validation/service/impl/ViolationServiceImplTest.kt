@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
 import org.mockito.ArgumentCaptor
+import org.mockito.BDDMockito.given
 import org.mockito.Captor
 import org.mockito.InjectMocks
 import org.mockito.Mock
@@ -12,7 +13,8 @@ import org.mockito.Mockito.verify
 import org.mockito.junit.jupiter.MockitoExtension
 import rmiguele.transaction.validation.model.Violation
 import rmiguele.transaction.validation.repository.ViolationRepository
-import rmiguele.transaction.validation.service.AddViolationCommand
+import rmiguele.transaction.validation.service.CreateViolationCommand
+import rmiguele.transaction.validation.service.GetViolationsByTransactionCodeQuery
 import rmiguele.transaction.validation.service.impl.TestUtils.Companion.capture
 
 @ExtendWith(MockitoExtension::class)
@@ -29,7 +31,7 @@ class ViolationServiceImplTest {
 
     @Test
     fun saveViolation() {
-        violationServiceImpl.addViolation(AddViolationCommand("transaction1", "Description"))
+        violationServiceImpl.createViolation(CreateViolationCommand("transaction1", "Description"))
 
         verify(violationRepository, only()).save(capture(argumentCaptor))
 
@@ -38,7 +40,26 @@ class ViolationServiceImplTest {
     }
 
     @Test
-    fun getViolations() {
+    fun getViolationsByTransactionCode() {
+        val violations = arrayListOf(
+                Violation("violation1", "transaction1", "Violação 1"),
+                Violation("violation2", "transaction1", "Violação 2")
+        )
+        given(violationRepository.getViolationsByTransactionCode("transaction1")).willReturn(violations)
 
+        val found = violationServiceImpl.getViolations(GetViolationsByTransactionCodeQuery("transaction1"))
+        assertEquals(violations, found)
+    }
+
+    @Test
+    fun getViolations() {
+        val violations = arrayListOf(
+                Violation("violation1", "transaction1", "Violação 1"),
+                Violation("violation2", "transaction1", "Violação 2")
+        )
+        given(violationRepository.findAll()).willReturn(violations)
+
+        val found = violationServiceImpl.getViolations()
+        assertEquals(violations, found)
     }
 }

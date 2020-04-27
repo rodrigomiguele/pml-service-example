@@ -2,18 +2,21 @@ package rmiguele.transaction.validation.service
 
 import rmiguele.transaction.validation.model.Violation
 
-data class AddViolationCommand(
+data class CreateViolationCommand(
         val transactionCode: String,
         val description: String
 )
 
-data class GetViolationQuery(
+data class GetViolationsByTransactionCodeQuery(
         val transactionCode: String
 )
 
 interface ViolationService {
 
-    fun addViolation(command: AddViolationCommand)
+    fun createViolation(command: CreateViolationCommand): Violation
 
-    fun getViolations(command: GetViolationQuery): List<Violation>
+    fun getViolations(query: GetViolationsByTransactionCodeQuery): List<Violation>
+
+    fun getViolations(): List<Violation>
+
 }

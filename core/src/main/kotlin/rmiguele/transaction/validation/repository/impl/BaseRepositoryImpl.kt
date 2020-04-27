@@ -5,19 +5,20 @@ import dev.morphia.Datastore
 import dev.morphia.Morphia
 import rmiguele.transaction.validation.repository.BaseRepository
 
-abstract class BaseRepositoryImpl<K, T>(val clazz: Class<T>, open val mongoClient: MongoClient) : BaseRepository<K, T> {
+abstract class BaseRepositoryImpl<K, T>(val clazz: Class<T>, mongoClient: MongoClient) : BaseRepository<K, T> {
 
     val dataStore: Datastore
 
     init {
-        val morphia = Morphia().also {
-            it.map(clazz)
-            dataStore = it.createDatastore(mongoClient, clazz.simpleName)
-        }
+        val morphia = Morphia()
+        morphia.map(clazz)
+        dataStore = morphia.createDatastore(mongoClient, clazz.simpleName)
+        dataStore.ensureIndexes()
     }
 
-    override fun save(model: T) {
+    override fun save(model: T): T {
         dataStore.save(model)
+        return model
     }
 
     override fun findAll(): List<T> {

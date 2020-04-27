@@ -4,12 +4,12 @@ import com.mongodb.MongoClient
 import rmiguele.transaction.validation.model.Violation
 import rmiguele.transaction.validation.repository.ViolationRepository
 
-class ViolationRepositoryImpl(override val mongoClient: MongoClient) :
+class ViolationRepositoryImpl(mongoClient: MongoClient) :
         BaseRepositoryImpl<String, Violation>(Violation::class.java, mongoClient), ViolationRepository {
 
-    override fun getViolationsByTransactionCode(transactionCode: String): List<Violation> {
+    override fun getViolationsByTransactionCode(code: String): List<Violation> {
         val query = dataStore.createQuery(Violation::class.java)
-        query.field("transactionCode").equal(transactionCode)
+        query.field("transactionCode").equal(code)
         return query.find().toList()
     }
 

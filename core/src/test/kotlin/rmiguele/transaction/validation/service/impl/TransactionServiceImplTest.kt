@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
 import org.mockito.ArgumentCaptor
+import org.mockito.BDDMockito.given
 import org.mockito.Captor
 import org.mockito.InjectMocks
 import org.mockito.Mock
@@ -12,7 +13,7 @@ import org.mockito.junit.jupiter.MockitoExtension
 import rmiguele.transaction.validation.model.Transaction
 import rmiguele.transaction.validation.model.TransactionType
 import rmiguele.transaction.validation.repository.TransactionRepository
-import rmiguele.transaction.validation.service.AddTransactionCommand
+import rmiguele.transaction.validation.service.CreateTransactionCommand
 import java.util.Date
 
 @ExtendWith(MockitoExtension::class)
@@ -30,7 +31,7 @@ class TransactionServiceImplTest {
     @Test
     fun saveTransaction() {
         val date = Date()
-        transactionServiceImpl.addTransaction(AddTransactionCommand(TransactionType.CREDIT_CARD, "transaction1", 100.00, date, "sender1", "receiver1"))
+        transactionServiceImpl.createTransaction(CreateTransactionCommand("transaction1", TransactionType.CREDIT_CARD, 100.00, date, "sender1", "receiver1"))
 
         Mockito.verify(transactionRepository, Mockito.only()).save(TestUtils.capture(argumentCaptor))
 
@@ -40,5 +41,23 @@ class TransactionServiceImplTest {
         assertEquals(date, argumentCaptor.value.date)
         assertEquals("sender1", argumentCaptor.value.senderCode)
         assertEquals("receiver1", argumentCaptor.value.receiverCode)
+    }
+
+    @Test
+    fun getAllTransactions() {
+        val transactions = arrayListOf(
+                Transaction(
+                        "transaction1",
+                        TransactionType.CREDIT_CARD,
+                        100.00,
+                        Date(),
+                        "sender1",
+                        "receiver1"
+                )
+        )
+        given(transactionRepository.findAll()).willReturn(transactions)
+
+        val found = transactionServiceImpl.getTransactions()
+        assertEquals(transactions, found)
     }
 }

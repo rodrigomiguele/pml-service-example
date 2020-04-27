@@ -15,7 +15,7 @@ import org.mockito.junit.jupiter.MockitoExtension
 import rmiguele.transaction.validation.model.Person
 import rmiguele.transaction.validation.model.PersonSituation
 import rmiguele.transaction.validation.repository.PersonRepository
-import rmiguele.transaction.validation.service.AddViolationCommand
+import rmiguele.transaction.validation.service.CreateViolationCommand
 import rmiguele.transaction.validation.service.RestrictedListValidationCommand
 import rmiguele.transaction.validation.service.ViolationService
 import rmiguele.transaction.validation.service.impl.TestUtils.Companion.any
@@ -34,7 +34,7 @@ class RestrictedListValidationServiceImplTest {
     lateinit var restrictedListValidationServiceImpl: RestrictedListValidationServiceImpl
 
     @Captor
-    lateinit var argumentCaptor: ArgumentCaptor<AddViolationCommand>
+    lateinit var argumentCaptor: ArgumentCaptor<CreateViolationCommand>
 
     @Test
     fun doNothingIfSenderAndReceiverNotFound() {
@@ -43,7 +43,7 @@ class RestrictedListValidationServiceImplTest {
 
         restrictedListValidationServiceImpl.validate(RestrictedListValidationCommand("transaction1", "sender1", "receiver1"))
 
-        verify(violationService, never()).addViolation(any())
+        verify(violationService, never()).createViolation(any())
     }
 
     @Test
@@ -53,7 +53,7 @@ class RestrictedListValidationServiceImplTest {
 
         restrictedListValidationServiceImpl.validate(RestrictedListValidationCommand("transaction1", "sender1", "receiver1"))
 
-        verify(violationService, never()).addViolation(any())
+        verify(violationService, never()).createViolation(any())
     }
 
     @Test
@@ -63,7 +63,7 @@ class RestrictedListValidationServiceImplTest {
 
         restrictedListValidationServiceImpl.validate(RestrictedListValidationCommand("transaction1", "sender1", "receiver1"))
 
-        verify(violationService, only()).addViolation(capture(argumentCaptor))
+        verify(violationService, only()).createViolation(capture(argumentCaptor))
         assertEquals("transaction1", argumentCaptor.value.transactionCode)
         assertEquals("Remetente \"sender1\" em situação ilegal", argumentCaptor.value.description)
     }
@@ -75,7 +75,7 @@ class RestrictedListValidationServiceImplTest {
 
         restrictedListValidationServiceImpl.validate(RestrictedListValidationCommand("transaction1", "sender1", "receiver1"))
 
-        verify(violationService, only()).addViolation(capture(argumentCaptor))
+        verify(violationService, only()).createViolation(capture(argumentCaptor))
         assertEquals("transaction1", argumentCaptor.value.transactionCode)
         assertEquals("Receptor \"receiver1\" em situação ilegal", argumentCaptor.value.description)
     }

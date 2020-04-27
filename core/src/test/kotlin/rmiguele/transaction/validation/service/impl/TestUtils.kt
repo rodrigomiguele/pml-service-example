@@ -5,7 +5,7 @@ import org.mockito.Mockito
 import rmiguele.transaction.validation.model.Transaction
 import rmiguele.transaction.validation.model.TransactionType
 import rmiguele.transaction.validation.model.Violation
-import rmiguele.transaction.validation.service.AddViolationCommand
+import rmiguele.transaction.validation.service.CreateViolationCommand
 import java.util.Calendar
 import java.util.Date
 
@@ -14,7 +14,7 @@ class TestUtils {
 
         inline fun <reified T> capture(captor: ArgumentCaptor<T>): T {
             return when (T::class) {
-                AddViolationCommand::class -> captor.capture() ?: AddViolationCommand("", "") as T
+                CreateViolationCommand::class -> captor.capture() ?: CreateViolationCommand("", "") as T
                 Violation::class -> captor.capture() ?: Violation("", "", "") as T
                 Transaction::class -> captor.capture() ?: Transaction("", TransactionType.MOBILE, 0.0, Date(), "", "") as T
                 else -> captor.capture()

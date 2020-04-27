@@ -3,6 +3,7 @@
   <component name="CompilerConfiguration">
     <bytecodeTargetLevel>
       <module name="pml-service-example.application.main" target="1.8" />
+      <module name="pml-service-example.application.native-test" target="1.8" />
       <module name="pml-service-example.application.test" target="1.8" />
       <module name="pml-service-example.core.main" target="1.8" />
       <module name="pml-service-example.core.test" target="1.8" />

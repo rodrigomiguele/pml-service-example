@@ -13,6 +13,7 @@ class ValidateTransactionServiceImpl(
         private val restrictedListValidationService: RestrictedListValidationService) : ValidateTransactionService {
 
     override fun validate(command: ValidateTransactionCommand) {
+        Thread.sleep(10000)
         if (command.transactionType == TransactionType.CREDIT_CARD) {
             validateCreditCardTransactionService.validate(ValidateCreditCardTransactionCommand(command.transactionCode, command.receiverCode, command.value, command.date))
         }
