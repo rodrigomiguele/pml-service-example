@@ -16,24 +16,29 @@ import rmiguele.transaction.validation.service.AddViolationCommand
 import rmiguele.transaction.validation.service.impl.TestUtils.Companion.capture
 
 @ExtendWith(MockitoExtension::class)
-class AddViolationServiceImplTest {
+class ViolationServiceImplTest {
 
     @Mock
     lateinit var violationRepository: ViolationRepository
 
     @InjectMocks
-    lateinit var addViolationServiceImpl: AddViolationServiceImpl
+    lateinit var violationServiceImpl: ViolationServiceImpl
 
     @Captor
     lateinit var argumentCaptor: ArgumentCaptor<Violation>
 
     @Test
     fun saveViolation() {
-        addViolationServiceImpl.addViolation(AddViolationCommand("transaction1", "Description"))
+        violationServiceImpl.addViolation(AddViolationCommand("transaction1", "Description"))
 
         verify(violationRepository, only()).save(capture(argumentCaptor))
 
         assertEquals("transaction1", argumentCaptor.value.transactionCode)
         assertEquals("Description", argumentCaptor.value.description)
+    }
+
+    @Test
+    fun getViolations() {
+
     }
 }

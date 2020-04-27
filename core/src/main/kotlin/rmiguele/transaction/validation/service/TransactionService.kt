@@ -3,7 +3,7 @@ package rmiguele.transaction.validation.service
 import rmiguele.transaction.validation.model.TransactionType
 import java.util.Date
 
-data class ValidateTransactionCommand(
+data class AddTransactionCommand(
         val transactionType: TransactionType,
         val transactionCode: String,
         val value: Double,
@@ -12,8 +12,8 @@ data class ValidateTransactionCommand(
         val receiverCode: String
 )
 
-interface ValidateTransactionService {
+interface TransactionService {
 
-    fun validate(command: ValidateTransactionCommand)
+    fun addTransaction(command: AddTransactionCommand)
 
 }

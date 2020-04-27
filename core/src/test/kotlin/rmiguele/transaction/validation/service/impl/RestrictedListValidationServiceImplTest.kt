@@ -16,8 +16,8 @@ import rmiguele.transaction.validation.model.Person
 import rmiguele.transaction.validation.model.PersonSituation
 import rmiguele.transaction.validation.repository.PersonRepository
 import rmiguele.transaction.validation.service.AddViolationCommand
-import rmiguele.transaction.validation.service.AddViolationService
 import rmiguele.transaction.validation.service.RestrictedListValidationCommand
+import rmiguele.transaction.validation.service.ViolationService
 import rmiguele.transaction.validation.service.impl.TestUtils.Companion.any
 import rmiguele.transaction.validation.service.impl.TestUtils.Companion.capture
 
@@ -28,7 +28,7 @@ class RestrictedListValidationServiceImplTest {
     lateinit var personRepository: PersonRepository
 
     @Mock
-    lateinit var addViolationService: AddViolationService
+    lateinit var violationService: ViolationService
 
     @InjectMocks
     lateinit var restrictedListValidationServiceImpl: RestrictedListValidationServiceImpl
@@ -38,44 +38,44 @@ class RestrictedListValidationServiceImplTest {
 
     @Test
     fun doNothingIfSenderAndReceiverNotFound() {
-        given(personRepository.getPersonById("sender1")).willReturn(null)
-        given(personRepository.getPersonById("receiver1")).willReturn(null)
+        given(personRepository.findOne("sender1")).willReturn(null)
+        given(personRepository.findOne("receiver1")).willReturn(null)
 
         restrictedListValidationServiceImpl.validate(RestrictedListValidationCommand("transaction1", "sender1", "receiver1"))
 
-        verify(addViolationService, never()).addViolation(any())
+        verify(violationService, never()).addViolation(any())
     }
 
     @Test
     fun doNothingIfSenderAndReceiverAreLegal() {
-        given(personRepository.getPersonById("sender1")).willReturn(Person("sender1", PersonSituation.LEGAL))
-        given(personRepository.getPersonById("receiver1")).willReturn(Person("receiver1", PersonSituation.LEGAL))
+        given(personRepository.findOne("sender1")).willReturn(Person("sender1", PersonSituation.LEGAL))
+        given(personRepository.findOne("receiver1")).willReturn(Person("receiver1", PersonSituation.LEGAL))
 
         restrictedListValidationServiceImpl.validate(RestrictedListValidationCommand("transaction1", "sender1", "receiver1"))
 
-        verify(addViolationService, never()).addViolation(any())
+        verify(violationService, never()).addViolation(any())
     }
 
     @Test
     fun addViolationIfSenderIsIllegal() {
-        given(personRepository.getPersonById("sender1")).willReturn(Person("sender1", PersonSituation.ILLEGAL))
-        given(personRepository.getPersonById("receiver1")).willReturn(Person("receiver1", PersonSituation.LEGAL))
+        given(personRepository.findOne("sender1")).willReturn(Person("sender1", PersonSituation.ILLEGAL))
+        given(personRepository.findOne("receiver1")).willReturn(Person("receiver1", PersonSituation.LEGAL))
 
         restrictedListValidationServiceImpl.validate(RestrictedListValidationCommand("transaction1", "sender1", "receiver1"))
 
-        verify(addViolationService, only()).addViolation(capture(argumentCaptor))
+        verify(violationService, only()).addViolation(capture(argumentCaptor))
         assertEquals("transaction1", argumentCaptor.value.transactionCode)
         assertEquals("Remetente \"sender1\" em situação ilegal", argumentCaptor.value.description)
     }
 
     @Test
     fun addViolationIfReceiverIsIllegal() {
-        given(personRepository.getPersonById("sender1")).willReturn(Person("sender1", PersonSituation.LEGAL))
-        given(personRepository.getPersonById("receiver1")).willReturn(Person("receiver1", PersonSituation.ILLEGAL))
+        given(personRepository.findOne("sender1")).willReturn(Person("sender1", PersonSituation.LEGAL))
+        given(personRepository.findOne("receiver1")).willReturn(Person("receiver1", PersonSituation.ILLEGAL))
 
         restrictedListValidationServiceImpl.validate(RestrictedListValidationCommand("transaction1", "sender1", "receiver1"))
 
-        verify(addViolationService, only()).addViolation(capture(argumentCaptor))
+        verify(violationService, only()).addViolation(capture(argumentCaptor))
         assertEquals("transaction1", argumentCaptor.value.transactionCode)
         assertEquals("Receptor \"receiver1\" em situação ilegal", argumentCaptor.value.description)
     }

@@ -16,8 +16,8 @@ import rmiguele.transaction.validation.model.Transaction
 import rmiguele.transaction.validation.model.TransactionType
 import rmiguele.transaction.validation.repository.TransactionRepository
 import rmiguele.transaction.validation.service.AddViolationCommand
-import rmiguele.transaction.validation.service.AddViolationService
 import rmiguele.transaction.validation.service.ValidateCreditCardTransactionCommand
+import rmiguele.transaction.validation.service.ViolationService
 import rmiguele.transaction.validation.service.impl.TestUtils.Companion.addMinutes
 import rmiguele.transaction.validation.service.impl.TestUtils.Companion.any
 import rmiguele.transaction.validation.service.impl.TestUtils.Companion.capture
@@ -30,7 +30,7 @@ class ValidateCreditCardTransactionServiceImplTest {
     lateinit var transactionRepository: TransactionRepository
 
     @Mock
-    lateinit var addViolationService: AddViolationService
+    lateinit var violationService: ViolationService
 
     @InjectMocks
     lateinit var validateCreditCardTransactionServiceImpl: ValidateCreditCardTransactionServiceImpl
@@ -46,36 +46,36 @@ class ValidateCreditCardTransactionServiceImplTest {
 
     @Test
     fun doNothingIfPreviousTransactionHasNotTheSameValue() {
-        val previousTransaction = Transaction(TransactionType.CREDIT_CARD, "transaction1", 100.00, Date(), "sender1", "receiver1")
+        val previousTransaction = Transaction("transaction1", TransactionType.CREDIT_CARD, 100.00, Date(), "sender1", "receiver1")
         given(transactionRepository.getLastTransactionByTypeAndSender(TransactionType.CREDIT_CARD, "sender1")).willReturn(previousTransaction)
 
         validateCreditCardTransactionServiceImpl.validate(ValidateCreditCardTransactionCommand("transaction1", "sender1", 200.00, Date()))
 
-        verify(addViolationService, never()).addViolation(any())
+        verify(violationService, never()).addViolation(any())
     }
 
     @Test
     fun doNothingIfPreviousTransactionHasTheSameValueButAfter5Minutes() {
         val date = Date()
         val previousDate = addMinutes(date, -6)
-        val previousTransaction = Transaction(TransactionType.CREDIT_CARD, "transaction1", 100.00, previousDate, "sender1", "receiver1")
+        val previousTransaction = Transaction("transaction1", TransactionType.CREDIT_CARD, 100.00, previousDate, "sender1", "receiver1")
         given(transactionRepository.getLastTransactionByTypeAndSender(TransactionType.CREDIT_CARD, "sender1")).willReturn(previousTransaction)
 
         validateCreditCardTransactionServiceImpl.validate(ValidateCreditCardTransactionCommand("transaction1", "sender1", 100.00, date))
 
-        verify(addViolationService, never()).addViolation(any())
+        verify(violationService, never()).addViolation(any())
     }
 
     @Test
     fun addViolationIfPreviousTransactionHasTheSameValueButBefore5Minutes() {
         val date = Date()
         val previousDate = addMinutes(date, -4)
-        val previousTransaction = Transaction(TransactionType.CREDIT_CARD, "transaction1", 100.00, previousDate, "sender1", "receiver1")
+        val previousTransaction = Transaction("transaction1", TransactionType.CREDIT_CARD, 100.00, previousDate, "sender1", "receiver1")
         given(transactionRepository.getLastTransactionByTypeAndSender(TransactionType.CREDIT_CARD, "sender1")).willReturn(previousTransaction)
 
         validateCreditCardTransactionServiceImpl.validate(ValidateCreditCardTransactionCommand("transaction1", "sender1", 100.00, date))
 
-        verify(addViolationService, only()).addViolation(capture(argumentCaptor))
+        verify(violationService, only()).addViolation(capture(argumentCaptor))
         assertEquals("transaction1", argumentCaptor.value.transactionCode)
         assertEquals("Uma transação de mesmo valor já ocorreu nos últimos 5 minutos.", argumentCaptor.value.description)
     }

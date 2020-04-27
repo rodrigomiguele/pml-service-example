@@ -16,13 +16,13 @@ import rmiguele.transaction.validation.service.AddTransactionCommand
 import java.util.Date
 
 @ExtendWith(MockitoExtension::class)
-class AddTransactionServiceImplTest {
+class TransactionServiceImplTest {
 
     @Mock
     lateinit var transactionRepository: TransactionRepository
 
     @InjectMocks
-    lateinit var addTransactionServiceImpl: AddTransactionServiceImpl
+    lateinit var transactionServiceImpl: TransactionServiceImpl
 
     @Captor
     lateinit var argumentCaptor: ArgumentCaptor<Transaction>
@@ -30,12 +30,12 @@ class AddTransactionServiceImplTest {
     @Test
     fun saveTransaction() {
         val date = Date()
-        addTransactionServiceImpl.addTransaction(AddTransactionCommand(TransactionType.CREDIT_CARD, "transaction1", 100.00, date, "sender1", "receiver1"))
+        transactionServiceImpl.addTransaction(AddTransactionCommand(TransactionType.CREDIT_CARD, "transaction1", 100.00, date, "sender1", "receiver1"))
 
         Mockito.verify(transactionRepository, Mockito.only()).save(TestUtils.capture(argumentCaptor))
 
-        assertEquals(TransactionType.CREDIT_CARD, argumentCaptor.value.transactionType)
-        assertEquals("transaction1", argumentCaptor.value.transactionCode)
+        assertEquals("transaction1", argumentCaptor.value.code)
+        assertEquals(TransactionType.CREDIT_CARD, argumentCaptor.value.type)
         assertEquals(100.00, argumentCaptor.value.value)
         assertEquals(date, argumentCaptor.value.date)
         assertEquals("sender1", argumentCaptor.value.senderCode)

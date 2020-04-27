@@ -2,8 +2,8 @@ package rmiguele.transaction.validation.repository
 
 import rmiguele.transaction.validation.model.Violation
 
-interface ViolationRepository {
+interface ViolationRepository : BaseRepository<String, Violation> {
 
-    fun save(violation: Violation)
+    fun getViolationsByTransactionCode(code: String): List<Violation>
 
 }

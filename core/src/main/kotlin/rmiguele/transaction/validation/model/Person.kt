@@ -1,6 +1,14 @@
 package rmiguele.transaction.validation.model
 
-data class Person(val personCode: String, val personSituation: PersonSituation)
+import dev.morphia.annotations.Entity
+import dev.morphia.annotations.Id
+
+@Entity
+data class Person(
+        @Id
+        val code: String,
+        val situation: PersonSituation
+)
 
 enum class PersonSituation {
     LEGAL, ILLEGAL

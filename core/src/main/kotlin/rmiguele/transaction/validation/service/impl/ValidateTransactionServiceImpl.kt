@@ -8,7 +8,9 @@ import rmiguele.transaction.validation.service.ValidateCreditCardTransactionServ
 import rmiguele.transaction.validation.service.ValidateTransactionCommand
 import rmiguele.transaction.validation.service.ValidateTransactionService
 
-class ValidateTransactionServiceImpl(private val validateCreditCardTransactionService: ValidateCreditCardTransactionService, private val restrictedListValidationService: RestrictedListValidationService) : ValidateTransactionService {
+class ValidateTransactionServiceImpl(
+        private val validateCreditCardTransactionService: ValidateCreditCardTransactionService,
+        private val restrictedListValidationService: RestrictedListValidationService) : ValidateTransactionService {
 
     override fun validate(command: ValidateTransactionCommand) {
         if (command.transactionType == TransactionType.CREDIT_CARD) {
