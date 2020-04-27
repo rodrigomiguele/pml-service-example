@@ -7,7 +7,7 @@ import rmiguele.transaction.validation.service.AddViolationService
 import rmiguele.transaction.validation.service.RestrictedListValidationCommand
 import rmiguele.transaction.validation.service.RestrictedListValidationService
 
-class RestrictedListValidationServiceImpl(val personRepository: PersonRepository, val addViolationService: AddViolationService) : RestrictedListValidationService {
+class RestrictedListValidationServiceImpl(private val personRepository: PersonRepository, private val addViolationService: AddViolationService) : RestrictedListValidationService {
 
     override fun validate(command: RestrictedListValidationCommand) {
         personRepository.getPersonById(command.senderCode)?.also {

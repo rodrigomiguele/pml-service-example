@@ -2,6 +2,8 @@ package rmiguele.transaction.validation.service.impl
 
 import org.mockito.ArgumentCaptor
 import org.mockito.Mockito
+import rmiguele.transaction.validation.model.Transaction
+import rmiguele.transaction.validation.model.TransactionType
 import rmiguele.transaction.validation.model.Violation
 import rmiguele.transaction.validation.service.AddViolationCommand
 import java.util.Calendar
@@ -14,6 +16,7 @@ class TestUtils {
             return when (T::class) {
                 AddViolationCommand::class -> captor.capture() ?: AddViolationCommand("", "") as T
                 Violation::class -> captor.capture() ?: Violation("", "") as T
+                Transaction::class -> captor.capture() ?: Transaction(TransactionType.ATM, "", 0.0, Date(), "", "") as T
                 else -> captor.capture()
             }
         }

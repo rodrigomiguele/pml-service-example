@@ -7,9 +7,11 @@ import rmiguele.transaction.validation.service.AddViolationService
 import rmiguele.transaction.validation.service.ValidateCreditCardTransactionCommand
 import rmiguele.transaction.validation.service.ValidateCreditCardTransactionService
 
-class ValidateCreditCardTransactionServiceImpl(val transactionRepository: TransactionRepository, val addViolationService: AddViolationService) : ValidateCreditCardTransactionService {
+class ValidateCreditCardTransactionServiceImpl(private val transactionRepository: TransactionRepository, private val addViolationService: AddViolationService) : ValidateCreditCardTransactionService {
 
-    val FIVE_MINUTES = 5 * 60 * 1000
+    companion object {
+        const val FIVE_MINUTES = 5 * 60 * 1000
+    }
 
     override fun validate(command: ValidateCreditCardTransactionCommand) {
         transactionRepository.getLastTransactionByTypeAndSender(TransactionType.CREDIT_CARD, command.senderCode)?.also {

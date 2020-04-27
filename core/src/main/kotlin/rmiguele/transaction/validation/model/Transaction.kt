@@ -1,7 +1,6 @@
 package rmiguele.transaction.validation.model
 
-import java.math.BigDecimal
-import java.util.*
+import java.util.Date
 
 data class Transaction(val transactionType: TransactionType, val transactionCode: String, val value: Double, val date: Date, val senderCode: String, val receiverCode: String)
 
